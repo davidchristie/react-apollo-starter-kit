@@ -17,8 +17,8 @@ const compiler = webpack({
     ]
   },
   output: {
-    filename: 'app.js', // sets our output filename to server.js
-    path: path.join(process.cwd(), 'build'), // sets our output directory to lib/
+    filename: 'app.js',
+    path: path.join(process.cwd(), 'build'),
     publicPath: '/'
   }
 })
@@ -35,9 +35,8 @@ const app = new WebpackDevServer(compiler, {
   }
 })
 
-// Serve static resources
 app.use('*', (req, res) => {
-  fs.readFile(path.resolve('src', 'index.html'), (err, file) => {
+  fs.readFile(path.resolve('public', 'index.html'), (err, file) => {
     if (err) {
       res.sendStatus(404)
     } else {
