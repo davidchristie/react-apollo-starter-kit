@@ -14,9 +14,10 @@ import client from './apollo'
 import App from './components/App'
 import Home from './components/Home'
 import Landing from './components/Landing'
+import store from './store'
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={client} store={store}>
     <Router
       history={browserHistory}
       render={
