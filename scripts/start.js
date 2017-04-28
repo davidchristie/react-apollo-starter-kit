@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import server from '../src/server'
+import server from '../server'
 
 console.log(chalk.blue.bold('Starting development server...'))
 console.log('\n')
