@@ -2,7 +2,7 @@ import React from 'react'
 import { Nav, Navbar, NavItem } from 'react-bootstrap'
 import { browserHistory, Link } from 'react-router'
 
-import Logout from './Logout'
+import Logout from '../Logout'
 
 class Header extends React.Component {
   constructor (props) {
