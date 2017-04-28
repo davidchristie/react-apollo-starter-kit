@@ -16,12 +16,12 @@ const server = new WebpackDevServer(compiler, {
   }
 })
 
-server.use('*', (req, res) => {
-  fs.readFile(path.resolve('public', 'index.html'), (err, file) => {
-    if (err) {
-      res.sendStatus(404)
+server.use('*', (request, response) => {
+  fs.readFile(path.resolve('public', 'index.html'), (error, file) => {
+    if (error) {
+      response.sendStatus(404)
     } else {
-      res.send(file.toString())
+      response.send(file.toString())
     }
   })
 })
