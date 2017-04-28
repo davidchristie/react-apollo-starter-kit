@@ -141,8 +141,8 @@ class Login extends React.Component {
 
 const styles = {
   errors: {
-    textAlign: 'left',
-    color: 'red'
+    color: 'red',
+    textAlign: 'left'
   }
 }
 

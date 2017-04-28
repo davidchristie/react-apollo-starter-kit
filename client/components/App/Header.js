@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { Link, browserHistory } from 'react-router'
 
-import Login from './Login'
+import Login from '../Login'
 import Register from './Register'
 
 class Header extends React.Component {
