@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
 
-import Description from '../App/Description'
+import Description from '../Landing/Description'
 
 class Body extends React.Component {
   render () {

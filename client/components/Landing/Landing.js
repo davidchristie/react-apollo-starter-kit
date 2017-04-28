@@ -3,8 +3,8 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 
 import client from '../../apollo'
-import Footer from './Footer'
-import Header from './Header'
+import Description from './Description'
+import Hero from './Hero'
 
 const userQuery = gql`
   query GetUser($id: ID!) {
@@ -15,7 +15,7 @@ const userQuery = gql`
   }
 `
 
-class App extends React.Component {
+class Landing extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -88,14 +88,13 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Header />
-        {this.props.children}
-        <Footer />
+        <Hero />
+        <Description />
       </div>
     )
   }
 }
 
-App.propTypes = {}
+Landing.propTypes = {}
 
-export default App
+export default Landing
