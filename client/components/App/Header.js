@@ -3,7 +3,7 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { Link, browserHistory } from 'react-router'
 
 import Login from '../Login'
-import Register from './Register'
+import Register from '../Register'
 
 class Header extends React.Component {
   constructor (props) {
