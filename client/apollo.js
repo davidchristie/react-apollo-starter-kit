@@ -1,9 +1,7 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 
-import config from './config'
-
 const networkInterface = createNetworkInterface({
-  uri: config.scapholdUrl
+  uri: 'https://us-west-2.api.scaphold.io/graphql/react-apollo-example'
 })
 networkInterface.use([{
   applyMiddleware (req, next) {

@@ -13,10 +13,6 @@ class Header extends React.Component {
     }
   }
 
-  goToGraphiQL () {
-    browserHistory.push('/graphiql')
-  }
-
   goHome () {
     browserHistory.push('/')
   }
@@ -31,7 +27,6 @@ class Header extends React.Component {
         </Navbar.Header>
         <Nav pullRight>
           <NavItem onClick={this.goHome}>Home</NavItem>
-          <NavItem onClick={this.goToGraphiQL}>GraphiQL</NavItem>
           <Login />
           <Register />
         </Nav>

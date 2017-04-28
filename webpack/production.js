@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 export default {
-  entry: path.resolve('client', 'js', 'app.js'),
+  entry: path.resolve('client'),
   module: {
     rules: [
       {

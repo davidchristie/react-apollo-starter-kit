@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
 const compiler = webpack({
-  entry: path.join(process.cwd(), 'client', 'js', 'app.js'),
+  entry: path.resolve('client'),
   module: {
     loaders: [
       {

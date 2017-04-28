@@ -8,12 +8,7 @@ class Header extends React.Component {
   constructor (props) {
     super(props)
 
-    this.goToGraphiQL = this.goToGraphiQL.bind(this)
     this.goHome = this.goHome.bind(this)
-  }
-
-  goToGraphiQL () {
-    browserHistory.push('/graphiql')
   }
 
   goHome () {
@@ -33,7 +28,6 @@ class Header extends React.Component {
         </Navbar.Header>
         <Nav pullRight>
           <NavItem onClick={this.goHome}>Home</NavItem>
-          <NavItem onClick={this.goToGraphiQL}>GraphiQL</NavItem>
           <NavItem>{loggedInUser}</NavItem>
           <Logout />
         </Nav>

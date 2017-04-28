@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 import React from 'react'
 import { browserHistory } from 'react-router'
 
-import client from '../../../apollo'
+import client from '../../apollo'
 import Description from './Description'
 import Footer from './Footer'
 import Header from './Header'
