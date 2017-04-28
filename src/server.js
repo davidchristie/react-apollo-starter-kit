@@ -1,10 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack'); // eslint-disable-line
-const WebpackDevServer = require('webpack-dev-server'); // eslint-disable-line
-const config = require('./config');
+const fs = require('fs')
+const path = require('path')
+const webpack = require('webpack')
+const WebpackDevServer = require('webpack-dev-server')
 
-const APP_PORT = 3001;
+const config = require('./config')
+
+const APP_PORT = 3001
 
 // Production version
 let compiler = webpack({
@@ -14,18 +15,18 @@ let compiler = webpack({
       {
         exclude: /node_modules/,
         // loader: 'babel-loader',
-        test: /\.js$/,
-      },
-    ],
+        test: /\.js$/
+      }
+    ]
   },
   output: {
     path: path.join(process.cwd(), 'lib'), // sets our output directory to lib/
     filename: 'app.js', // sets our output filename to server.js
-    publicPath: '/js/',
-  },
-});
+    publicPath: '/js/'
+  }
+})
 
-let app;
+let app
 if (process.env.NODE_ENV !== 'production') {
   compiler = webpack({
     entry: path.join(process.cwd(), 'src', 'js', 'app.js'),
@@ -34,16 +35,16 @@ if (process.env.NODE_ENV !== 'production') {
         {
           exclude: /node_modules/,
           loader: 'babel-loader',
-          test: /\.js$/,
-        },
-      ],
+          test: /\.js$/
+        }
+      ]
     },
     output: {
       path: path.join(process.cwd(), 'src'), // sets our output directory to lib/
       filename: 'app.js', // sets our output filename to server.js
-      publicPath: '/',
-    },
-  });
+      publicPath: '/'
+    }
+  })
 
   app = new WebpackDevServer(compiler, {
     hot: true,
@@ -51,9 +52,9 @@ if (process.env.NODE_ENV !== 'production') {
     publicPath: '/',
     proxy: { '/graphql': config.scapholdUrl },
     stats: {
-      colors: true,
-    },
-  });
+      colors: true
+    }
+  })
 } else {
   app = new WebpackDevServer(compiler, {
     hot: false,
@@ -61,22 +62,22 @@ if (process.env.NODE_ENV !== 'production') {
     publicPath: '/',
     proxy: { '/graphql': config.scapholdUrl },
     stats: {
-      colors: false,
-    },
-  });
+      colors: false
+    }
+  })
 }
 
 // Serve static resources
 app.use('*', (req, res) => {
   fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
     if (err) {
-      res.sendStatus(404);
+      res.sendStatus(404)
     } else {
-      res.send(file.toString());
+      res.send(file.toString())
     }
-  });
-});
+  })
+})
 
 app.listen(APP_PORT, () => {
-  console.log(`App is now running on http://localhost:${APP_PORT}`);
-});
+  console.log(`App is now running on http://localhost:${APP_PORT}`)
+})

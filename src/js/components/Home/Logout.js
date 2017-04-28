@@ -1,24 +1,23 @@
-import React from 'react';
-import { browserHistory } from 'react-router';
-import { NavItem } from 'react-bootstrap';
+import React from 'react'
+import { NavItem } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
 
 class Logout extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.logoutUser = this.logoutUser.bind(this);
+  constructor (props) {
+    super(props)
+    this.logoutUser = this.logoutUser.bind(this)
   }
 
-  logoutUser() {
-    localStorage.clear();
-    browserHistory.push('/');
+  logoutUser () {
+    window.localStorage.clear()
+    browserHistory.push('/')
   }
 
-  render() {
+  render () {
     return (
       <NavItem onClick={this.logoutUser}>Logout</NavItem>
-    );
+    )
   }
 }
 
-export default Logout;
+export default Logout

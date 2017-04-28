@@ -1,31 +1,32 @@
-import React from 'react';
-import { Link, browserHistory } from 'react-router';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import Login from './Login';
-import Register from './Register';
+import React from 'react'
+import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import { Link, browserHistory } from 'react-router'
+
+import Login from './Login'
+import Register from './Register'
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      showModal: false,
-    };
+      showModal: false
+    }
   }
 
-  goToGraphiQL() {
-    browserHistory.push('/graphiql');
+  goToGraphiQL () {
+    browserHistory.push('/graphiql')
   }
 
-  goHome() {
-    browserHistory.push('/');
+  goHome () {
+    browserHistory.push('/')
   }
 
-  render() {
+  render () {
     return (
       <Navbar style={styles.navbar}>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Scaphold</Link>
+            <Link to='/'>Scaphold</Link>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
@@ -35,14 +36,14 @@ class Header extends React.Component {
           <Register />
         </Nav>
       </Navbar>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header
 
 const styles = {
   navbar: {
-    marginBottom: 0,
-  },
-};
+    marginBottom: 0
+  }
+}

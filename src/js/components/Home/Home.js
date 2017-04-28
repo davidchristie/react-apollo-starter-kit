@@ -1,13 +1,13 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
-import {browserHistory} from 'react-router';
-import Header from './Header';
-import Body from './Body';
+import React from 'react'
+import { browserHistory } from 'react-router'
+
+import Body from './Body'
+import Header from './Header'
 
 class Home extends React.Component {
-  render() {
-    if (!localStorage.token) {
-      browserHistory.push('/');
+  render () {
+    if (!window.localStorage.token) {
+      browserHistory.push('/')
     }
 
     return (
@@ -15,8 +15,8 @@ class Home extends React.Component {
         <Header />
         <Body />
       </div>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

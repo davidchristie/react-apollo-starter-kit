@@ -1,11 +1,12 @@
-import React from 'react';
-import gql from 'graphql-tag';
-import { browserHistory } from 'react-router';
-import client from '../../../apollo';
-import Header from './Header';
-import Hero from './Hero';
-import Description from './Description';
-import Footer from './Footer';
+import gql from 'graphql-tag'
+import React from 'react'
+import { browserHistory } from 'react-router'
+
+import client from '../../../apollo'
+import Description from './Description'
+import Footer from './Footer'
+import Header from './Header'
+import Hero from './Hero'
 
 const userQuery = gql`
   query GetUser($id: ID!) {
@@ -14,79 +15,79 @@ const userQuery = gql`
       username
     }
   }
-`;
+`
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      loading: true,
-    };
-  }
-
-  componentDidMount() {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user.id : null;
-    if (token && userId) {
-      // If we are logged in subscribe to the user and render the app.
-      this.subscribeToUser(userId);
-    } else {
-      // We are not logged in so stop loading and render the landing page.
-      this.setState({ // eslint-disable-line
-        loading: false,
-      });
+      loading: true
     }
   }
 
-  subscribeToUser(id) {
-    const that = this;
+  componentDidMount () {
+    const token = window.localStorage.getItem('token')
+    const user = JSON.parse(window.localStorage.getItem('user'))
+    const userId = user ? user.id : null
+    if (token && userId) {
+      // If we are logged in subscribe to the user and render the app.
+      this.subscribeToUser(userId)
+    } else {
+      // We are not logged in so stop loading and render the landing page.
+      this.setState({ // eslint-disable-line
+        loading: false
+      })
+    }
+  }
+
+  subscribeToUser (id) {
+    const that = this
     const observable = client.watchQuery({
       query: userQuery,
       pollInterval: 60000,
       forceFetch: true,
       variables: {
-        id,
-      },
-    });
+        id
+      }
+    })
     const subscription = observable.subscribe({
-      next(result) {
+      next (result) {
         if (result && result.errors) {
           const unauthed = result.errors.reduce((acc, err) => (
             acc || err.status === 401
-          ), false);
+          ), false)
           if (unauthed) {
-            localStorage.clear();
+            window.localStorage.clear()
             that.setState({
               user: result.data.getUser,
-              loading: false,
-            });
+              loading: false
+            })
           }
         } else {
-          localStorage.setItem('currentUsername', result.data.getUser.username);
+          window.localStorage.setItem('currentUsername', result.data.getUser.username)
           that.setState({
             user: result.data.getUser,
-            loading: false,
-          });
-          browserHistory.push('/home');
+            loading: false
+          })
+          browserHistory.push('/home')
         }
       },
-      error(error) {
-        console.log(`Error subscribing to user: ${error.toString()}`);
+      error (error) {
+        console.log(`Error subscribing to user: ${error.toString()}`)
         that.setState({
-          loading: false,
-        });
+          loading: false
+        })
       }, // Network error, etc.
-      complete() {
-        // console.log(`Subscription complete`);
-      },
-    });
+      complete () {
+        // console.log(`Subscription complete`)
+      }
+    })
     this.setState({
-      userSubscription: subscription,
-    });
+      userSubscription: subscription
+    })
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Header />
@@ -94,10 +95,10 @@ class App extends React.Component {
         <Description />
         <Footer />
       </div>
-    );
+    )
   }
 }
 
-App.propTypes = {};
+App.propTypes = {}
 
-export default App;
+export default App

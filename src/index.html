@@ -16,11 +16,9 @@
   <body>
     <span id="root"></span>
       <script type="text/javascript">
-        // Force `fetch` polyfill to workaround Chrome not displaying request body
-        // in developer tools for the native `fetch`.
+        // Force `fetch` polyfill to workaround Chrome not displaying request body in developer tools for the native `fetch`.
         self.fetch = null;
       </script>
-      <!--<script src="http://localhost:3001/webpack-dev-server.js"></script>-->
       <script src="/app.js"></script>
   </body>
 </html>

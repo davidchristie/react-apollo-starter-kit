@@ -5,7 +5,7 @@
  */
 
 const config = {
-  scapholdUrl: 'https://us-west-2.api.scaphold.io/graphql/react-apollo-example',
-};
+  scapholdUrl: 'https://us-west-2.api.scaphold.io/graphql/react-apollo-example'
+}
 
-module.exports = config;
+module.exports = config

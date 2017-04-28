@@ -1,11 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { applyRouterMiddleware, Router, Route, routes, browserHistory } from 'react-router';
-import { ApolloProvider } from 'react-apollo';
-import App from './components/App/App';
-import Home from './components/Home/Home';
-import GraphiQLModule from './components/GraphiQL/GraphiQL';
-import client from '../apollo';
+import React from 'react'
+import { ApolloProvider } from 'react-apollo'
+import ReactDOM from 'react-dom'
+import {
+  applyRouterMiddleware,
+  browserHistory,
+  Route,
+  routes,
+  Router
+} from 'react-router'
+
+import client from '../apollo'
+import App from './components/App/App'
+import GraphiQLModule from './components/GraphiQL/GraphiQL'
+import Home from './components/Home/Home'
 
 ReactDOM.render(
   <ApolloProvider client={client}>
@@ -16,10 +23,10 @@ ReactDOM.render(
         applyRouterMiddleware()
       }
     >
-      <Route path="/" component={App} />
-      <Route path="/home" component={Home} />
-      <Route path="/graphiql" component={GraphiQLModule} />
+      <Route path='/' component={App} />
+      <Route path='/home' component={Home} />
+      <Route path='/graphiql' component={GraphiQLModule} />
     </Router>
   </ApolloProvider>,
-  document.getElementById('root'), // eslint-disable-line
-);
+  document.getElementById('root')
+)

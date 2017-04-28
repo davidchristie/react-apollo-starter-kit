@@ -1,23 +1,24 @@
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
-import config from './config';
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+
+import config from './config'
 
 const networkInterface = createNetworkInterface({
-  uri: config.scapholdUrl,
-});
+  uri: config.scapholdUrl
+})
 networkInterface.use([{
-  applyMiddleware(req, next) {
+  applyMiddleware (req, next) {
     if (!req.options.headers) {
-      req.options.headers = {};  // Create the header object if needed.
+      req.options.headers = {}  // Create the header object if needed.
     }
-    if (localStorage.getItem('token')) {
-      req.options.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    if (window.localStorage.getItem('token')) {
+      req.options.headers.Authorization = `Bearer ${window.localStorage.getItem('token')}`
     }
-    next();
-  },
-}]);
+    next()
+  }
+}])
 
 const client = new ApolloClient({
-  networkInterface,
-});
+  networkInterface
+})
 
-export default client;
+export default client

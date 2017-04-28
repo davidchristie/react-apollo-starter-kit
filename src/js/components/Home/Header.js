@@ -1,45 +1,44 @@
-import React from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import { Link, browserHistory } from 'react-router';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import Logout from './Logout';
+import React from 'react'
+import { Nav, Navbar, NavItem } from 'react-bootstrap'
+import { browserHistory, Link } from 'react-router'
+
+import Logout from './Logout'
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.goToGraphiQL = this.goToGraphiQL.bind(this);
-    this.goHome = this.goHome.bind(this);
+    this.goToGraphiQL = this.goToGraphiQL.bind(this)
+    this.goHome = this.goHome.bind(this)
   }
 
-  goToGraphiQL() {
-    browserHistory.push('/graphiql');
+  goToGraphiQL () {
+    browserHistory.push('/graphiql')
   }
 
-  goHome() {
-    browserHistory.push('/home');
+  goHome () {
+    browserHistory.push('/home')
   }
 
-  render() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const loggedInUser = user ? user.username : '';
+  render () {
+    const user = JSON.parse(window.localStorage.getItem('user'))
+    const loggedInUser = user ? user.username : ''
 
     return (
       <Navbar style={styles.navbar}>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/home">Scaphold</Link>
+            <Link to='/home'>Scaphold</Link>
           </Navbar.Brand>
         </Navbar.Header>
-        <Nav pullRight={true}>
+        <Nav pullRight>
           <NavItem onClick={this.goHome}>Home</NavItem>
           <NavItem onClick={this.goToGraphiQL}>GraphiQL</NavItem>
           <NavItem>{loggedInUser}</NavItem>
           <Logout />
         </Nav>
       </Navbar>
-    );
+    )
   }
 }
 
@@ -47,7 +46,6 @@ const styles = {
   navbar: {
     marginBottom: 0
   }
-};
+}
 
-export default Header;
-
+export default Header

@@ -1,12 +1,6 @@
-/**
- * COMMON WEBPACK CONFIGURATION
- */
-
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-// console.log('dir');
-// console.log(path.resolve(process.cwd(), 'app/assets/styles'));
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 module.exports = () => ({
   entry: path.join(process.cwd(), 'lib', 'js', 'app.js'),
@@ -23,9 +17,9 @@ module.exports = () => ({
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true,
+        minifyURLs: true
       },
-      inject: true,
+      inject: true
     }),
     new CopyWebpackPlugin([
       // { from: 'src/images', to: 'assets/images' },
@@ -35,21 +29,21 @@ module.exports = () => ({
       // By default, we only copy modified files during
       // a watch or webpack-dev-server build. Setting this
       // to `true` copies all files.
-      copyUnmodified: true,
-    }),
+      copyUnmodified: true
+    })
   ],
   module: {
     loaders: [
       {
         exclude: /node_modules/,
         // loader: 'babel-loader',
-        test: /\.js$/,
-      },
-    ],
+        test: /\.js$/
+      }
+    ]
   },
   output: {
     path: path.join(process.cwd(), 'build'), // sets our output directory to build/
     filename: 'app.js', // sets our output filename to server.js
-    publicPath: '/',
-  },
-});
+    publicPath: '/'
+  }
+})
