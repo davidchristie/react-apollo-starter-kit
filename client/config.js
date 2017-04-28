@@ -4,8 +4,6 @@
  * Yup. It's that easy.
  */
 
-const config = {
+export default {
   scapholdUrl: 'https://us-west-2.api.scaphold.io/graphql/react-apollo-example'
 }
-
-module.exports = config

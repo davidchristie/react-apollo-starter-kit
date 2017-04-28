@@ -3,10 +3,8 @@ const path = require('path')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-const config = require('../src/config')
-
 const compiler = webpack({
-  entry: path.join(process.cwd(), 'src', 'js', 'app.js'),
+  entry: path.join(process.cwd(), 'client', 'js', 'app.js'),
   module: {
     loaders: [
       {
@@ -18,17 +16,14 @@ const compiler = webpack({
   },
   output: {
     filename: 'app.js',
-    path: path.join(process.cwd(), 'build'),
+    path: path.resolve('build'),
     publicPath: '/'
   }
 })
 
 const app = new WebpackDevServer(compiler, {
-  contentBase: 'src/',
+  contentBase: 'build/',
   hot: true,
-  proxy: {
-    '/graphql': config.scapholdUrl
-  },
   publicPath: '/',
   stats: {
     colors: true
