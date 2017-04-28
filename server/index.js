@@ -1,25 +1,11 @@
-const fs = require('fs')
-const path = require('path')
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
+import fs from 'fs'
+import path from 'path'
+import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
 
-const compiler = webpack({
-  entry: path.resolve('client'),
-  module: {
-    loaders: [
-      {
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        test: /\.js$/
-      }
-    ]
-  },
-  output: {
-    filename: 'app.js',
-    path: path.resolve('build'),
-    publicPath: '/'
-  }
-})
+import development from '../webpack/development'
+
+const compiler = webpack(development)
 
 const app = new WebpackDevServer(compiler, {
   contentBase: 'build/',
