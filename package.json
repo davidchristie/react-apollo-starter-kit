@@ -43,6 +43,7 @@
   "name": "react-apollo-starter-kit",
   "private": true,
   "scripts": {
+    "build": "babel-node scripts/build",
     "start": "babel-node scripts/start"
   },
   "version": "0.1.0"
