@@ -7,7 +7,7 @@ import development from '../webpack/development'
 
 const compiler = webpack(development)
 
-const app = new WebpackDevServer(compiler, {
+const server = new WebpackDevServer(compiler, {
   contentBase: 'build/',
   hot: true,
   publicPath: '/',
@@ -16,7 +16,7 @@ const app = new WebpackDevServer(compiler, {
   }
 })
 
-app.use('*', (req, res) => {
+server.use('*', (req, res) => {
   fs.readFile(path.resolve('public', 'index.html'), (err, file) => {
     if (err) {
       res.sendStatus(404)
@@ -26,4 +26,4 @@ app.use('*', (req, res) => {
   })
 })
 
-export default app
+export default server
