@@ -5,8 +5,6 @@ const WebpackDevServer = require('webpack-dev-server')
 
 const config = require('./config')
 
-const APP_PORT = 3001
-
 // Production version
 let compiler = webpack({
   entry: path.join(process.cwd(), 'lib', 'js', 'app.js'),
@@ -78,6 +76,4 @@ app.use('*', (req, res) => {
   })
 })
 
-app.listen(APP_PORT, () => {
-  console.log(`App is now running on http://localhost:${APP_PORT}`)
-})
+export default app

@@ -11,6 +11,7 @@
     "babel-polyfill": "6.7.4",
     "babel-preset-stage-0": "6.5.0",
     "babel-relay-plugin": "0.8.1",
+    "chalk": "^1.1.3",
     "classnames": "2.2.4",
     "express": "^4.13.4",
     "graphiql": "^0.9.3",
@@ -42,7 +43,7 @@
   "name": "react-apollo-starter-kit",
   "private": true,
   "scripts": {
-    "start": "babel-node ./src/server.js"
+    "start": "babel-node scripts/start"
   },
   "version": "0.1.0"
 }
