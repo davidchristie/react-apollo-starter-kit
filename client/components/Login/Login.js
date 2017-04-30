@@ -79,13 +79,16 @@ class Login extends React.Component {
         if (!data.errors) {
           window.localStorage.setItem('token', data.loginUser.token)
           window.localStorage.setItem('user', JSON.stringify(data.loginUser.user))
-          this.setState({ errors: [] })
+          this.setState({
+            errors: [],
+            showModal: false
+          })
           browserHistory.push('/home')
         } else {
-          this.setState({ errors: data.errors })
+          this.setState({errors: data.errors})
         }
       }).catch(errors => {
-        this.setState({ errors: errors.graphQLErrors })
+        this.setState({errors: errors.graphQLErrors})
       })
     } else {
       this.setState({

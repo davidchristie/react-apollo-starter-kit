@@ -70,10 +70,13 @@ class Register extends React.Component {
         if (!data.errors) {
           window.localStorage.setItem('token', data.createUser.token)
           window.localStorage.setItem('user', JSON.stringify(data.createUser.changedUser))
-          this.setState({errors: []})
+          this.setState({
+            errors: [],
+            showModal: false
+          })
           browserHistory.push('/home')
         } else {
-          this.setState({ errors: data.errors })
+          this.setState({errors: data.errors})
         }
       }).catch((errors) => {
         this.setState({ errors: errors.graphQLErrors })
