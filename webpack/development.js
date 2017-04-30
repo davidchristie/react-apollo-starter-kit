@@ -1,8 +1,12 @@
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 export default {
   devtool: 'source-map',
-  entry: path.resolve('client'),
+  entry: {
+    client: path.resolve('client')
+  },
   module: {
     rules: [
       {
@@ -13,8 +17,19 @@ export default {
     ]
   },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve('build'),
     publicPath: '/'
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        copyUnmodified: true,
+        from: 'public'
+      }
+    ]),
+    new HtmlWebpackPlugin({
+      template: 'public/index.html'
+    })
+  ]
 }

@@ -11,8 +11,7 @@ class Hero extends React.Component {
             <h1>Welcome!</h1>
             <br />
             <p>
-              {`Here you'll find `}<a href='https://scaphold.io' target='_blank' style={styles.scaphold}>Scaphold.io</a>{`'s Boilerplate React-Apollo template
-              &nbsp;`}<FontAwesome name='smile-o' />
+              Here you{`'`}ll find <a href='https://scaphold.io' target='_blank' style={styles.scaphold}>Scaphold.io</a>{`'s`} Boilerplate React-Apollo template &nbsp;<FontAwesome name='smile-o' />
             </p>
             <br />
             <p>

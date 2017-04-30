@@ -3,7 +3,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 export default {
-  entry: path.resolve('client'),
+  entry: {
+    client: path.resolve('client')
+  },
   module: {
     rules: [
       {
@@ -14,7 +16,7 @@ export default {
     ]
   },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve('build'),
     publicPath: '/'
   },
