@@ -1,7 +1,6 @@
 import gql from 'graphql-tag'
 import React from 'react'
 import { graphql } from 'react-apollo'
-import { browserHistory } from 'react-router'
 import {
   Alert,
   Button,
@@ -14,6 +13,10 @@ import {
   NavItem,
   Row
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
+
+import login from '../../actions/login'
 
 const CreateUserMutation = gql`
   mutation CreateUserMutation($data: CreateUserInput!) {
@@ -68,6 +71,7 @@ class Register extends React.Component {
         password: this.state.registerPassword
       }).then(({ data }) => {
         if (!data.errors) {
+          this.props.loginUser(data.createUser.changedUser)
           window.localStorage.setItem('token', data.createUser.token)
           window.localStorage.setItem('user', JSON.stringify(data.createUser.changedUser))
           this.setState({
@@ -163,4 +167,14 @@ const RegisterWithData = graphql(CreateUserMutation, {
     })
   })
 })(Register)
-export default RegisterWithData
+
+const RegisterWithDataAndState = connect(
+  null,
+  dispatch => {
+    return {
+      loginUser: user => dispatch(login(user))
+    }
+  }
+)(RegisterWithData)
+
+export default RegisterWithDataAndState

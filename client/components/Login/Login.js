@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
 import React from 'react'
 import { graphql } from 'react-apollo'
+import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import {
   Alert,
@@ -13,6 +14,8 @@ import {
   Modal,
   NavItem
 } from 'react-bootstrap'
+
+import login from '../../actions/login'
 
 const LoginUserMutation = gql`
   mutation LoginUserMutation($data: LoginUserInput!) {
@@ -30,10 +33,10 @@ class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      showModal: false,
+      errors: [],
       loginEmail: '',
       loginPassword: '',
-      errors: []
+      showModal: false
     }
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
@@ -77,6 +80,8 @@ class Login extends React.Component {
         password: this.state.loginPassword
       }).then(({ data }) => {
         if (!data.errors) {
+          console.log(data)
+          this.props.loginUser(data.loginUser.user)
           window.localStorage.setItem('token', data.loginUser.token)
           window.localStorage.setItem('user', JSON.stringify(data.loginUser.user))
           this.setState({
@@ -158,4 +163,14 @@ const LoginWithData = graphql(LoginUserMutation, {
     })
   })
 })(Login)
-export default LoginWithData
+
+const LoginWithDataAndState = connect(
+  null,
+  dispatch => {
+    return {
+      loginUser: user => dispatch(login(user))
+    }
+  }
+)(LoginWithData)
+
+export default LoginWithDataAndState
