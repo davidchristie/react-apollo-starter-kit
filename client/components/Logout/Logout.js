@@ -1,6 +1,9 @@
 import React from 'react'
 import { NavItem } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+
+import logout from '../../actions/logout'
 
 class Logout extends React.Component {
   constructor (props) {
@@ -9,6 +12,7 @@ class Logout extends React.Component {
   }
 
   logoutUser () {
+    this.props.logout()
     window.localStorage.clear()
     browserHistory.push('/')
   }
@@ -20,4 +24,11 @@ class Logout extends React.Component {
   }
 }
 
-export default Logout
+export default connect(
+  null,
+  dispatch => {
+    return {
+      logout: () => dispatch(logout())
+    }
+  }
+)(Logout)
