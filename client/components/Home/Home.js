@@ -2,7 +2,6 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 
 import Body from './Body'
-import Header from './Header'
 
 class Home extends React.Component {
   render () {
@@ -12,7 +11,6 @@ class Home extends React.Component {
 
     return (
       <div>
-        <Header />
         <Body />
       </div>
     )
