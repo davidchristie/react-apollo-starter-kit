@@ -1,25 +1,21 @@
 import React from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { Link, browserHistory } from 'react-router'
+import { Link } from 'react-router'
 
 import user from '../../selectors/user'
 import Login from '../Login'
 import Logout from '../Logout'
 import Register from '../Register'
+import HomeButton from './HomeButton'
+
+const styles = {
+  navbar: {
+    marginBottom: 0
+  }
+}
 
 class Header extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      showModal: false
-    }
-  }
-
-  goHome () {
-    browserHistory.push('/')
-  }
-
   render () {
     const { user } = this.props
     return (
@@ -30,7 +26,7 @@ class Header extends React.Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
-          <NavItem onClick={this.goHome}>Home</NavItem>
+          <HomeButton />
           {
             user
               ? [
@@ -45,12 +41,6 @@ class Header extends React.Component {
         </Nav>
       </Navbar>
     )
-  }
-}
-
-const styles = {
-  navbar: {
-    marginBottom: 0
   }
 }
 

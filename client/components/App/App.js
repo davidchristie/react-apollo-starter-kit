@@ -1,6 +1,5 @@
 import gql from 'graphql-tag'
 import React from 'react'
-import { browserHistory } from 'react-router'
 
 import client from '../../apollo'
 import Footer from './Footer'
@@ -41,12 +40,12 @@ class App extends React.Component {
   subscribeToUser (id) {
     const that = this
     const observable = client.watchQuery({
-      query: userQuery,
-      pollInterval: 60000,
       forceFetch: true,
+      pollInterval: 60000,
       variables: {
         id
-      }
+      },
+      query: userQuery
     })
     const subscription = observable.subscribe({
       next (result) {
@@ -67,7 +66,6 @@ class App extends React.Component {
             user: result.data.getUser,
             loading: false
           })
-          browserHistory.push('/home')
         }
       },
       error (error) {

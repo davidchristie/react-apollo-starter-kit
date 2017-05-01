@@ -14,7 +14,6 @@ import {
   Row
 } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
 
 import login from '../../actions/login'
 
@@ -71,14 +70,13 @@ class Register extends React.Component {
         password: this.state.registerPassword
       }).then(({ data }) => {
         if (!data.errors) {
-          this.props.loginUser(data.createUser.changedUser)
           window.localStorage.setItem('token', data.createUser.token)
           window.localStorage.setItem('user', JSON.stringify(data.createUser.changedUser))
           this.setState({
             errors: [],
             showModal: false
           })
-          browserHistory.push('/home')
+          this.props.loginUser(data.createUser.changedUser)
         } else {
           this.setState({errors: data.errors})
         }

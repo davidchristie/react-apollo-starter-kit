@@ -1,8 +1,6 @@
 import gql from 'graphql-tag'
 import React from 'react'
 import { graphql } from 'react-apollo'
-import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
 import {
   Alert,
   Button,
@@ -14,6 +12,7 @@ import {
   Modal,
   NavItem
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
 import login from '../../actions/login'
 
@@ -80,15 +79,13 @@ class Login extends React.Component {
         password: this.state.loginPassword
       }).then(({ data }) => {
         if (!data.errors) {
-          console.log(data)
-          this.props.loginUser(data.loginUser.user)
           window.localStorage.setItem('token', data.loginUser.token)
           window.localStorage.setItem('user', JSON.stringify(data.loginUser.user))
           this.setState({
             errors: [],
             showModal: false
           })
-          browserHistory.push('/home')
+          this.props.loginUser(data.loginUser.user)
         } else {
           this.setState({errors: data.errors})
         }

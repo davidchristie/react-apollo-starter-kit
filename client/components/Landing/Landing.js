@@ -1,6 +1,5 @@
 import gql from 'graphql-tag'
 import React from 'react'
-import { browserHistory } from 'react-router'
 
 import client from '../../apollo'
 import Description from './Description'
@@ -67,7 +66,6 @@ class Landing extends React.Component {
             user: result.data.getUser,
             loading: false
           })
-          browserHistory.push('/home')
         }
       },
       error (error) {
