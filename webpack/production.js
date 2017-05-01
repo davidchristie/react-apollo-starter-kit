@@ -1,6 +1,7 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
+import webpack from 'webpack'
 
 export default {
   entry: {
@@ -42,6 +43,22 @@ export default {
         useShortDoctype: true
       },
       template: 'public/index.html'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      debug: false,
+      minimize: true
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      comments: false,
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      mangle: {
+        keep_fnames: true,
+        screw_ie8: true
+      }
     })
   ]
 }
